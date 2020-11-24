@@ -10,6 +10,9 @@ set title " set terminal title
 set cmdheight=1 " command bar height
 set mat=2 " how many tenths of a second to blink
 set updatetime=300
+set termguicolors " enable true colour support
+
+
 if has('nvim')
     set signcolumn=yes
 elseif version >= 800
@@ -31,7 +34,7 @@ set cc=80               " set an 80 character line ruler
 set noshowmatch           " do not do the bracket animation thing
 set hlsearch            " highlight search results
 
-syntax on               " syntax highlighting
+syntax on               " syntax highlighting. Could try changing to 'enable'.
 filetype plugin indent on " allows auto-indenting depending on file type
 
 if has('nvim')
@@ -39,10 +42,12 @@ if has('nvim')
 else
     call plug#begin('~/.vim/plugged')
 endif
-Plug 'preservim/nerdtree' " File free
+
+Plug 'preservim/nerdtree' " File tree
 Plug 'joshdick/onedark.vim' " General theme
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy search thing.
 Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter'
 Plug 'itchyny/lightline.vim' " Colourful statuslines.
 Plug 'tpope/vim-fugitive' " Git command support
 Plug 'airblade/vim-gitgutter' " Git symbol support
@@ -54,5 +59,7 @@ call plug#end()
 let g:lightline = {
     \ 'colorscheme': 'onedark',
     \ }
+
+let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8, 'yoffset': 0.5, 'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' }}
 
 colorscheme onedark
